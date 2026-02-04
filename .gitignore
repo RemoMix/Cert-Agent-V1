@@ -1,0 +1,31 @@
+# --------------------
+# Python
+# --------------------
+.venv/
+__pycache__/
+*.pyc
+
+# --------------------
+# Secrets / local config
+# --------------------
+.env
+Config/*.local.yaml
+
+# --------------------
+# OCR binaries (portable)
+# --------------------
+Tesseract/
+Poppler/
+arabic_reshaper/
+bidi/
+
+# --------------------
+# Runtime / generated data
+# --------------------
+
+
+# --------------------
+# OCR artifacts / logs
+# --------------------
+*.hocr
+*.log

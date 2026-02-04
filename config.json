@@ -1,0 +1,8 @@
+{
+  "watch_folder": "D:/My Projects/Cert_Agent_V1/INBOX",
+  "processing_folder": "D:/My Projects/Cert_Agent_V1/PROCESSING",
+  "done_folder": "D:/My Projects/Cert_Agent_V1/DONE",
+  "error_folder": "D:/My Projects/Cert_Agent_V1/ERROR",
+  "excel_file": "D:/My Projects/Cert_Agent_V1/Raw Warehouses.xlsx",
+  "printer_name": "HP Neverstop Laser 100x"
+}

@@ -1,0 +1,44 @@
+Public WithEvents InboxItems As Outlook.Items
+
+Private Sub Application_Startup()
+    Set InboxItems = Outlook.Application.Session.GetDefaultFolder(olFolderInbox).Items
+End Sub
+
+Private Sub InboxItems_ItemAdd(ByVal Item As Object)
+    Dim Att As Attachment
+    Dim savePath As String
+    Dim filePath As String
+    Dim baseName As String
+    Dim ext As String
+    Dim i As Integer
+    Dim subj As String
+
+    If TypeName(Item) = "MailItem" Then
+
+        subj = LCase(Item.Subject)   ' نحول العنوان كله lowercase
+
+        ' ✅ يقبل cer / cert / أي شكل
+        If InStr(subj, "cer") > 0 Or InStr(subj, "cert") > 0 Then
+
+            savePath = "F:\My Projects\Cert_Agent\INBOX\"
+
+            For Each Att In Item.Attachments
+                If LCase(Right(Att.FileName, 4)) = ".pdf" Then
+
+                    baseName = Left(Att.FileName, InStrRev(Att.FileName, ".") - 1)
+                    ext = Mid(Att.FileName, InStrRev(Att.FileName, "."))
+                    filePath = savePath & Att.FileName
+                    i = 1
+
+                    ' 🔁 منع التكرار بالاسم
+                    Do While Dir(filePath) <> ""
+                        filePath = savePath & baseName & "_" & i & ext
+                        i = i + 1
+                    Loop
+
+                    Att.SaveAsFile filePath
+                End If
+            Next
+        End If
+    End If
+End Sub
